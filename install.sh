@@ -111,17 +111,21 @@ wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/janda09/pr
 # install badvpn
 cd
 apt-get -y install cmake make gcc libc6-dev zlib1g-dev
-wget https://raw.githubusercontent.com/janda09/private/master/badvpn-1.999.128.tar.bz2
-tar xf badvpn-1.999.128.tar.bz2
-mkdir badvpn-build
-cd badvpn-build
-cmake badvpn-1.999.128 -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
-make install
-echo 'badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/nul &' >> /etc/rc.local
-badvpn-udpgw --listen-addr 127.0.0.1:7200 > /dev/nul &
-cd /usr/bin
-wget https://raw.githubusercontent.com/janda09/private/master/badvpn-udpgw
-chmod 755 badvpn-udpgw
+cd
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/janda-baper/private/master/badvpn-udpgw64"
+chmod +x /usr/bin/badvpn-udpgw
+sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
+sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
+sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500' /etc/rc.local
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 cd
 
 # setting port ssh
