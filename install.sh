@@ -241,7 +241,7 @@ wget -O delete "https://raw.githubusercontent.com/janda09/private/master/delete.
 wget -O check "https://raw.githubusercontent.com/janda09/private/master/user-login.sh"
 wget -O member "https://raw.githubusercontent.com/janda09/private/master/user-list.sh"
 wget -O restart "https://raw.githubusercontent.com/janda09/private/master/restart.sh"
-wget -O speedtest "https://raw.githubusercontent.com/janda09/private/master/speedtest_cli.py"
+wget -O speedtest "https://raw.githubusercontent.com/janda-baper/private/master/speedtest"
 wget -O info "https://raw.githubusercontent.com/janda09/private/master/info.sh"
 wget -O about "https://raw.githubusercontent.com/janda09/private/master/about.sh"
 
