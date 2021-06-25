@@ -21,7 +21,7 @@ locality=KEDIRI
 organization=NOTT
 organizationalunit=NETT
 commonname=IPANG
-email=zuhriirfan09@gmail.com
+email=jandabaper09@gmail.com
 
 # configure rc.local
 cat <<EOF >/etc/rc.local
@@ -235,8 +235,8 @@ wget -O edit-openssh "https://raw.githubusercontent.com/janda09/private/master/e
 wget -O edit-squid3 "https://raw.githubusercontent.com/janda09/private/master/edit-squid3.sh"
 wget -O edit-stunnel4 "https://raw.githubusercontent.com/janda09/private/master/edit-stunnel4.sh"
 wget -O show-ports "https://raw.githubusercontent.com/janda09/private/master/show-ports.sh"
-wget -O usernew "https://raw.githubusercontent.com/janda09/private/master/usernew.sh"
-wget -O trial "https://raw.githubusercontent.com/janda09/private/master/trial.sh"
+wget -O usernew "https://raw.githubusercontent.com/janda-baper/private/master/usernew.sh"
+wget -O trial "https://raw.githubusercontent.com/janda-baper/private/master/trial.sh"
 wget -O delete "https://raw.githubusercontent.com/janda09/private/master/delete.sh"
 wget -O check "https://raw.githubusercontent.com/janda09/private/master/user-login.sh"
 wget -O member "https://raw.githubusercontent.com/janda09/private/master/user-list.sh"
