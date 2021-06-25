@@ -18,7 +18,7 @@ echo -e "Port OpenSSH: 22"  | lolcat
 echo -e "Port Dropbear: 143, 80, 110, 456"  | lolcat
 echo -e "Port SSL: 443" | lolcat
 echo -e "Port Squid: 3128,8080 (limit to IP SSH)" | lolcat
-echo -e "badvpn: badvpn-udpgw port 7300" | lolcat
+echo -e "badvpn: badvpn-udpgw port 7100-7300" | lolcat
 echo -e "nginx: 81" | lolcat
 echo -e "=============================" | lolcat
 echo -e "Expiration: $exp" | lolcat
