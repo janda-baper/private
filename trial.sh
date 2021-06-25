@@ -3,7 +3,7 @@
 #will expired after 1 day
 #Modified by Janda Baper Group
 
-IP=`dig +short myip.opendns.com @resolver1.opendns.com`
+IP=$(wget -qO- icanhazip.com);
 
 Login=trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
 hari="1"
