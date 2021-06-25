@@ -1,6 +1,6 @@
 # Auto Installer
 
-Scripts autoinstaller for VPS Ubuntu 18.04
+Scripts autoinstaller for VPS Ubuntu 18.04 & 20
 
 # Dropbear Version 2020.81
 
