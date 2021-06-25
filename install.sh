@@ -105,7 +105,7 @@ rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
 wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/janda09/private/master/nginx.conf"
 mkdir -p /home/vps/public_html
-echo "<pre>Setup by JandaBaper</pre>" > /home/vps/public_html/index.html
+echo "<pre>Setup by Janda Baper Ipang Nett Nott</pre>" > /home/vps/public_html/index.html
 wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/janda09/private/master/vps.conf"
 
 # install badvpn
@@ -155,9 +155,26 @@ apt-get -y install squid
 wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/janda09/private/master/squid3.conf"
 sed -i $MYIP2 /etc/squid/squid.conf;
 
+#Installing vnstat
+apt -y install vnstat
+/etc/init.d/vnstat restart
+apt -y install libsqlite3-dev
+wget https://humdi.net/vnstat/vnstat-2.6.tar.gz
+tar zxvf vnstat-2.6.tar.gz
+cd vnstat-2.6
+./configure --prefix=/usr --sysconfdir=/etc && make && make install
+cd
+vnstat -u -i $NET
+sed -i 's/Interface "'""eth0""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
+chown vnstat:vnstat /var/lib/vnstat -R
+systemctl enable vnstat
+/etc/init.d/vnstat restart
+rm -f /root/vnstat-2.6.tar.gz
+rm -rf /root/vnstat-2.6
+
 # install webmin
-apt-get -y install webmin
-sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
+#apt-get -y install webmin
+#sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
 
 # install stunnel
 apt-get install stunnel4 -y
@@ -257,6 +274,15 @@ service sshd restart
 /etc/init.d/webmin restart
 /etc/init.d/stunnel4 restart
 /etc/init.d/squid start
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 rm -rf ~/.bash_history && history -c
 echo "unset HISTFILE" >> /etc/profile
 
@@ -287,9 +313,14 @@ echo 'echo -e "" ' >> /etc/profile.d/janda.sh
 chmod +x /etc/profile.d/janda.sh
 
 # remove unnecessary files
-apt -y autoremove
-apt -y autoclean
-apt -y clean
+cd
+apt autoclean -y
+apt -y remove --purge unscd
+apt-get -y --purge remove samba*;
+apt-get -y --purge remove apache2*;
+apt-get -y --purge remove bind9*;
+apt-get -y remove sendmail*
+apt autoremove -y
 
 # info
 clear
@@ -302,7 +333,7 @@ echo "OpenSSH  : 22"  | tee -a log-install.txt
 echo "Dropbear : 143, 80, 443, 456"  | tee -a log-install.txt
 echo "SSL      : 443"  | tee -a log-install.txt
 echo "Squid3   : 3128, 8080 (limit to IP SSH)"  | tee -a log-install.txt
-echo "badvpn   : badvpn-udpgw port 7200"  | tee -a log-install.txt
+echo "badvpn   : badvpn-udpgw port 7100-7300"  | tee -a log-install.txt
 echo "nginx    : 81"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Script"  | tee -a log-install.txt
@@ -322,7 +353,7 @@ echo "about (Information about auto install script)"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Other features"  | tee -a log-install.txt
 echo "----------"  | tee -a log-install.txt
-echo "Webmin   : http://$MYIP:10000/"  | tee -a log-install.txt
+#echo "Webmin   : http://$MYIP:10000/"  | tee -a log-install.txt
 echo "Timezone : Asia/Jakarta (GMT +7)"  | tee -a log-install.txt
 echo "IPv6     : [off]"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
